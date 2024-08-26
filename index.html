@@ -7,27 +7,74 @@
     rel="stylesheet"
     href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css"
   >
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>
     <div class="columns">
         <div class="column">
-            <div class="box">
-                <p class="title is-5">Bienvenido al Trello de Iari</p>
-                <p class="subtitle">
-            Lista de tareas
-            </p>
-            <button class="button is-primary" >Nueva Tarea</button>
+            <div class="box has-text-centered">
+                <!-- <figure class="image is-128x128"> -->
+                <figure class="image is-4by3" style="max-width: 300px; margin: 0 auto;">
+                    <img src="Trello.png" style="width: 100%; height: auto;"/>
+                </figure>
+                <p class="title is-3 has-text-Black">
+                  <span class="icon is-large">
+                    <i class="fas fa-clipboard-list"></i> 
+                  </span>
+                  Bienvenido al Trello de Iari
+                </p>
+                <p class="subtitle is-5 has-text-grey-dark">
+                  Lista de tareas
+                </p>
+
+            <nav class="navbar" role="navigation" aria-label="dropdown navigation">
+                <div class="navbar-menu">
+                    <div class="navbar-end">
+                        <div class="navbar-item has-dropdown is-hoverable">
+                            <a class="navbar-link">
+                                <span class="icon-text">
+                                    <span class="icon">
+                                        <i class="fas fa-home"></i>
+                                    </span>
+                                    <span>Home</span>
+                                </span>
+                            </a>
+                
+                            <div class="navbar-dropdown is-right">
+                                <a class="navbar-item">
+                                    Mis Proyectos
+                                </a>
+                                <a class="navbar-item">
+                                    Recientes
+                                </a>
+                                <a class="navbar-item">
+                                    Favoritos
+                                </a>
+                                <hr class="navbar-divider">
+                                <div class="navbar-item">
+                                    Plantillas
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
         </div>
         <div class="column">
             <div class="container">
                 <div class="notification has-background-info-light">
-                    <button class="button is-primary" >Nueva Tarea</button>
+                    <!-- <button class="button is-primary" >Nueva Tarea</button>
+                    <input class="input bulma-placeholder-mixin"type="text"placeholder="I am a styled placeholder"> -->
         <div class="columns is-desktop">
             <div class="column">
                 <div class="container">
                     <div class="notification has-background-success-light">
-                        <div class="box ">
+                        <div class="box">
                             <div class="title is-5">To Do</div>
+                            <form class="box">
+                                
+                            </form>
+                            <button class="button is-black" >Nueva Tarjeta</button>
                         </div>
                     </div>
                 </div>
@@ -37,6 +84,10 @@
                     <div class="notification has-background-link-light">
                         <div class="box">
                             <div class="title is-5">Doing</div>
+                            <form class="box">
+                                
+                            </form>
+                            <button class="button is-black" >Nueva Tarjeta</button>
                         </div>
                     </div>
                 </div>
@@ -46,6 +97,10 @@
                     <div class="notification has-background-warning-light">
                         <div class="box">
                             <div class="title is-5">Revision</div>
+                            <form class="box">
+                                
+                            </form>
+                            <button class="button is-black" >Nueva Tarjeta</button>
                         </div>
                     </div>
                 </div>
@@ -55,6 +110,10 @@
                     <div class="notification has-background-danger-light">
                         <div class="box">
                             <div class="title is-5">Done</div>
+                            <form class="box">
+                                
+                            </form>
+                            <button class="button is-black" >Nueva Tarjeta</button>
                         </div>
                     </div>
                 </div>
