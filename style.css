@@ -1,5 +1,23 @@
 .is-desktop{
     display: flex;
 }
+.task-container .add-wrapper {
+    margin-top: 10px;
+    padding: 20px;
+}
 
-
+#add-wrapper {
+    margin-top: 10px;
+    padding-top: 20px;
+    margin: 0px !important;
+    padding: 0px;
+}
+#openModalButton{
+    margin-top: 10%;
+}
+.box{
+    margin-bottom: 100%;
+}
+button{
+    margin-top: 10%;
+}
