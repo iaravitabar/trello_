@@ -42,18 +42,27 @@ function initializeTaskManager() {
 
     function renderTasks() {
         todoTasksContainer.innerHTML = ''; 
-
-        tasks.forEach(task => {
+    
+        tasks.forEach((task, index) => {
             const taskElement = document.createElement('div');
             taskElement.classList.add('task-item', 'box');
             taskElement.innerHTML = `
                 <h4 class="title is-6">${task.title}</h4>
                 <p>${task.description}</p>
             `;
+            
+
+            taskElement.addEventListener('click', function() {
+                removeTask(index);
+            });
+    
             todoTasksContainer.appendChild(taskElement);
         });
     }
-    
+    function removeTask(index) {
+        tasks.splice(index, 1); 
+        renderTasks(); 
+    }
 
     openModalButton.addEventListener('click', openModal);
     closeModalButton.addEventListener('click', closeModal);
