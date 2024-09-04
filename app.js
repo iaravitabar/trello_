@@ -1,18 +1,34 @@
 document.addEventListener('DOMContentLoaded', initializeTaskManager);
 
 function initializeTaskManager() {
-    const openModalButton = document.getElementById('openModalButton');
+    //para abrir
+    const openModalButtonTodo = document.getElementById('openModalButtonTodo');
+    const openModalButtonDoing = document.getElementById('openModalButtonDoing');
+    const openModalButtonRevision = document.getElementById('openModalButtonRevision');
+    const openModalButtonDone = document.getElementById('openModalButtonDone');
+
+
     const closeModalButton = document.getElementById('closeModalButton');
     const taskModal = document.getElementById('taskModal');
     const saveTaskButton = document.getElementById('saveTaskButton');
     const cancelTaskButton = document.getElementById('cancelTaskButton');
     const taskTitleInput = document.getElementById('taskTitle');
     const taskDescriptionInput = document.getElementById('taskDescription');
+
+
     const todoTasksContainer = document.getElementById('todoTasks');
+    const doingTasksContainer = document.getElementById('doingTasks');
+    const revisionTasksContainer = document.getElementById('revisionTasks');
+    const doneTasksContainer = document.getElementById('doneTasks');
 
-    let tasks = []; 
+    let tasksTodo = [];
+    let tasksDoing = [];
+    let tasksRevision = [];
+    let tasksDone = [];
 
-    function openModal() {
+
+    function openModal(saveTaskFunc) {
+        currentSaveTaskFunction = saveTaskFunc;
         taskModal.classList.add('is-active');
     }
 
@@ -26,24 +42,24 @@ function initializeTaskManager() {
         taskDescriptionInput.value = '';
     }
 
-    function addTask() {
+    function addTask(taskArray, container) {
         const taskTitle = taskTitleInput.value.trim();
         const taskDescription = taskDescriptionInput.value.trim();
 
         if (taskTitle && taskDescription) {
             const newTask = { title: taskTitle, description: taskDescription };
-            tasks.push(newTask);
-            renderTasks(); 
+            taskArray.push(newTask);
+            renderTasks(container, taskArray); 
             closeModal(); 
         } else {
             alert('Por favor, completa todos los campos.');
         }
     }
 
-    function renderTasks() {
-        todoTasksContainer.innerHTML = ''; 
+    function renderTasks(container, taskArray) {
+        container.innerHTML = ''; 
     
-        tasks.forEach((task, index) => {
+        taskArray.forEach((task, index) => {
             const taskElement = document.createElement('div');
             taskElement.classList.add('task-item', 'box');
             taskElement.innerHTML = `
@@ -53,19 +69,38 @@ function initializeTaskManager() {
             
 
             taskElement.addEventListener('click', function() {
-                removeTask(index);
+                removeTask(taskArray, index);
             });
     
-            todoTasksContainer.appendChild(taskElement);
+            container.appendChild(taskElement);
         });
     }
-    function removeTask(index) {
-        tasks.splice(index, 1); 
-        renderTasks(); 
+    function removeTask(taskArray, index) {
+        taskArray.splice(index, 1); 
+        renderTasks(
+            taskArray === tasksTodo? todoTasksContainer:
+            taskArray === tasksDoing? doingTasksContainer:
+            taskArray === tasksRevision? revisionTasksContainer:
+            doneTasksContainer,
+            taskArray
+        ); 
     }
 
-    openModalButton.addEventListener('click', openModal);
+    openModalButtonTodo.addEventListener('click', function(){
+        openModal(()=> addTask(tasksTodo, todoTasksContainer));
+    });
+    openModalButtonDoing.addEventListener('click', function(){
+        openModal(()=> addTask(tasksDoing, doingTasksContainer));
+    });
+    openModalButtonRevision.addEventListener('click', function(){
+        openModal(()=> addTask(tasksRevision, revisionTasksContainer));
+    });
+    openModalButtonDone.addEventListener('click', function(){
+        openModal(()=> addTask(tasksDone, doneTasksContainer));
+    });
+    saveTaskButton.addEventListener('click', function() {
+        if (currentSaveTaskFunction) currentSaveTaskFunction(); 
+    });
     closeModalButton.addEventListener('click', closeModal);
     cancelTaskButton.addEventListener('click', closeModal);
-    saveTaskButton.addEventListener('click', addTask);
 }
