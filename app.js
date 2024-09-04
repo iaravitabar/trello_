@@ -16,7 +16,7 @@ function initializeTaskManager() {
     const taskDescriptionInput = document.getElementById('taskDescription');
 
 
-    const todoTasksContainer = document.getElementById('todoTasks');
+    const todoTasksContainer = document.getElementById('todoTasks');    
     const doingTasksContainer = document.getElementById('doingTasks');
     const revisionTasksContainer = document.getElementById('revisionTasks');
     const doneTasksContainer = document.getElementById('doneTasks');
@@ -25,6 +25,28 @@ function initializeTaskManager() {
     let tasksDoing = [];
     let tasksRevision = [];
     let tasksDone = [];
+
+    async function loadTask(){
+        try{
+            const response = await fetch('task.json');
+            const data = await response.json();
+
+            tasksTodo = data.todo || [];
+            tasksDoing = data.doing || [];
+            tasksRevision = data.revision || [];
+            tasksDone = data.done || [];
+
+            renderTasks(todoTasksContainer, tasksTodo);
+            renderTasks(doingTasksContainer, tasksDoing);
+            renderTasks(revisionTasksContainer, tasksRevision);
+            renderTasks(doneTasksContainer, tasksDone);
+        } catch (error) {
+            console.error('Error al cargar el archivo JSON:', error);
+        }
+    }
+    }
+    
+
 
 
     function openModal(saveTaskFunc) {

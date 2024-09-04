@@ -1,0 +1,30 @@
+{
+    "todo": [
+        {
+            "title": "Tarea 1",
+            "description": "Descripción de la tarea 1"
+        },
+        {
+            "title": "Tarea 2",
+            "description": "Descripción de la tarea 2"
+        }
+    ],
+    "doing": [
+        {
+            "title": "Tarea 3",
+            "description": "Descripción de la tarea 3"
+        }
+    ],
+    "revision": [
+        {
+            "title": "Tarea 4",
+            "description": "Descripción de la tarea 4"
+        }
+    ],
+    "done": [
+        {
+            "title": "Tarea 5",
+            "description": "Descripción de la tarea 5"
+        }
+    ]
+}
