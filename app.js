@@ -26,6 +26,8 @@ function initializeTaskManager() {
     let tasksRevision = [];
     let tasksDone = [];
 
+    let currentSaveTaskFunction = null;
+
     async function loadTask(){
         try{
             const response = await fetch('task.json');
@@ -44,7 +46,7 @@ function initializeTaskManager() {
             console.error('Error al cargar el archivo JSON:', error);
         }
     }
-    }
+    
     
 
 
@@ -123,6 +125,8 @@ function initializeTaskManager() {
     saveTaskButton.addEventListener('click', function() {
         if (currentSaveTaskFunction) currentSaveTaskFunction(); 
     });
+    
     closeModalButton.addEventListener('click', closeModal);
     cancelTaskButton.addEventListener('click', closeModal);
+    loadTask();
 }
